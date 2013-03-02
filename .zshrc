@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="wezm+"
 
 # Example aliases
 alias zshrc="v ~/.zshrc"
@@ -34,10 +34,23 @@ plugins=(git rails brew bundler gem donnpebe)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH=/usr/local/bin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/share/npm/bin
 
 PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+#########
+# Node
+#########
+export NVM_HOME="$HOME/.nvm"
+if [[ -f "$NVM_HOME/nvm.sh" ]]; then
+  source "$NVM_HOME/nvm.sh"
+fi
+
+if npm -v > /dev/null 2>&1; then
+  . <(npm completion)
+fi
+
 
 function mcd() {
   mkdir -p "$1" && cd "$1";
